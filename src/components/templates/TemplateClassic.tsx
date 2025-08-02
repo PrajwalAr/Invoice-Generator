@@ -1,0 +1,1 @@
+{{FILE:src/components/templates/TemplateClassic.tsx}}

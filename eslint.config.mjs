@@ -1,0 +1,1 @@
+{{FILE:eslint.config.mjs}}

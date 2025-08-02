@@ -1,0 +1,1 @@
+{{FILE:tailwind.config.ts}}

@@ -1,0 +1,1 @@
+{{FILE:src/components/templates/TemplateCorporate.tsx}}

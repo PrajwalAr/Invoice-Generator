@@ -1,0 +1,1 @@
+{{FILE:src/lib/sampleConfig.ts}}

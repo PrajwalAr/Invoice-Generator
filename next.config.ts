@@ -1,0 +1,1 @@
+{{FILE:next.config.ts}}
