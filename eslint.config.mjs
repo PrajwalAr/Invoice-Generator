@@ -5,8 +5,17 @@ import nextPlugin from "@next/eslint-plugin-next";
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
-  nextPlugin.configs["core-web-vitals"],
   {
-    rules: {}
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: { project: true }
+    },
+    plugins: {
+      "@next/next": nextPlugin
+    },
+    rules: {
+      ...nextPlugin.configs["core-web-vitals"].rules
+    }
   }
 );

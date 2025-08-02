@@ -1,32 +1,57 @@
-import { LineItems } from "./shared";
+"use client";
+import React from "react";
+import { InvoiceConfig } from "@/lib/types";
+import { useThemeVars, ItemsTable } from "./shared";
 
-export function TemplateClassic({ data }: { data: any }) {
-  const { company = {}, customer = {}, items = [], invoice = {} } = data;
+export default function TemplateClassic({ config }: { config: InvoiceConfig }) {
+  const { colors } = useThemeVars(config);
 
   return (
-    <div className="p-8 bg-white text-gray-900">
-      <header className="flex justify-between items-start mb-8">
-        <div>
-          <h1 className="text-3xl font-bold">{company.name || "Company"}</h1>
-          <p className="text-sm">{company.address}</p>
-        </div>
-        <div className="text-right">
-          <h2 className="text-2xl font-semibold">Invoice</h2>
-          <p className="text-sm">#{invoice.number || "0001"}</p>
+    <div className="w-full h-full text-gray-900" style={{ fontFamily: "Georgia, Cambria, 'Times New Roman', serif", fontSize: 13 }}>
+      <header className="border-b pb-3" style={{ borderColor: colors.border }}>
+        <div className="flex justify-between items-end">
+          <div>
+            <div className="text-3xl">Invoice</div>
+            <div className="text-sm text-gray-600 mt-1">
+              <div>Invoice #: {config.invoice.number}</div>
+              <div>Date: {config.invoice.date}</div>
+              {config.invoice.dueDate && <div>Due: {config.invoice.dueDate}</div>}
+            </div>
+          </div>
+          <div className="text-right">
+            {config.company.logo ? (
+              <img src={config.company.logo} alt="Logo" className="h-12 object-contain ml-auto" />
+            ) : (
+              <div className="text-xl">{config.company.name}</div>
+            )}
+            <div className="text-sm text-gray-600">
+              {config.company.address?.map((l, i) => <div key={i}>{l}</div>)}
+            </div>
+          </div>
         </div>
       </header>
 
-      <section className="mb-6">
-        <h3 className="font-semibold">Billed To</h3>
-        <p className="text-sm">{customer.name}</p>
-        <p className="text-sm">{customer.address}</p>
+      <section className="mt-4 grid grid-cols-2 gap-6">
+        <div>
+          <div className="uppercase tracking-wide text-gray-600 text-xs">From</div>
+          <div className="font-medium">{config.sender.name}</div>
+          <div className="text-sm text-gray-700">{config.sender.address?.join(", ")}</div>
+        </div>
+        <div>
+          <div className="uppercase tracking-wide text-gray-600 text-xs">Bill To</div>
+          <div className="font-medium">{config.recipient.name}</div>
+          <div className="text-sm text-gray-700">{config.recipient.address?.join(", ")}</div>
+        </div>
       </section>
 
-      <LineItems items={items} />
+      <ItemsTable config={config} className="mt-4" />
 
-      <footer className="mt-8 text-sm">
-        <p>Notes: {invoice.notes}</p>
-      </footer>
+      {config.notes && (
+        <div className="mt-6 text-sm text-gray-800">
+          <div className="uppercase tracking-wide text-xs text-gray-600 mb-1">Notes</div>
+          <div>{config.notes}</div>
+        </div>
+      )}
     </div>
   );
 }

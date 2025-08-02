@@ -1,1 +1,7 @@
-module.exports = require('./next.config.ts');
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: { unoptimized: true },
+};
+
+module.exports = nextConfig;
+

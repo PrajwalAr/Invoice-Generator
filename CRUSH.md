@@ -10,7 +10,7 @@ Build/lint/test
 
 Project
 - Framework: Next.js 15 (App Router), React 18, TypeScript strict, TailwindCSS
-- Aliases: @/* -> src/* (tsconfig paths)
+- Aliases: @/* -> src/* (tsconfig paths) [ensure tsconfig.json has baseUrl "." and paths mapping]
 - PDFs/images: html2canvas + jsPDF in src/lib/pdf.ts; currency utils in src/lib/currency.ts
 
 Code style

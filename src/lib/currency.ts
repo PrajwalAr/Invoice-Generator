@@ -1,7 +1,14 @@
-export function currency(v: number, currency: string = "USD") {
-  try {
-    return new Intl.NumberFormat(undefined, { style: "currency", currency }).format(v || 0);
-  } catch {
-    return `$${(v || 0).toFixed(2)}`;
+export function formatMoney(
+  amount: number,
+  symbol = "$",
+  locale = "en-US",
+  currency?: string
+) {
+  if (currency) {
+    return new Intl.NumberFormat(locale, { style: "currency", currency }).format(amount);
   }
+  return `${symbol}${new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(amount)}`;
 }
