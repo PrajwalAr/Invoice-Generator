@@ -1,1 +1,4 @@
-{{FILE:.eslintrc.json}}
+{
+  "extends": ["next/core-web-vitals"],
+  "rules": {}
+}

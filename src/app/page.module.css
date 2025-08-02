@@ -1,1 +1,2 @@
-{{FILE:src/app/page.module.css}}
+.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr; } }
